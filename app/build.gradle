@@ -6,27 +6,26 @@ plugins {
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
+
 android {
     compileSdk 32
 
     defaultConfig {
+        buildConfigField("int", "VERSION_CODE", localProperties['VERSION_CODE'])
+        buildConfigField("String", "VERSION_NAME", localProperties['VERSION_NAME'])
+        buildConfigField("String", "DESC", localProperties['DESC'])
+
         applicationId "com.example.testgithubactions"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode localProperties['VERSION_CODE'].toInteger()
+        versionName localProperties['VERSION_NAME']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "APP_BASE_URL", localProperties['BASE_URL'])
-        buildConfigField("int", "APP_RETRY_ATTEMPTS", localProperties['RETRY_ATTEMPTS'])
-        buildConfigField("float", "APP_THRESHOLD_VALUE", localProperties['THRESHOLD_VALUE'])
     }
 
     buildTypes {
-        debug {
-            resValue("string", "maps_key", localProperties['MAP_KEY'])
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

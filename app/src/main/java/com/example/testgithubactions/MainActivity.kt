@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
         val txtConfig = findViewById<TextView>(R.id.txtConfig)
 
         val configText = """
-            BASE URL :  ${BuildConfig.APP_BASE_URL}
-            RE-ATTEMPT :  ${BuildConfig.APP_RETRY_ATTEMPTS}
-            THRESHOLD VALUE :  ${BuildConfig.APP_THRESHOLD_VALUE}
+            VERSION CODE :  ${BuildConfig.VERSION_CODE}
+            NAME :  ${BuildConfig.VERSION_NAME}
+            DESC :  ${BuildConfig.DESC}
         """.trimIndent()
 
         txtConfig.text = configText
